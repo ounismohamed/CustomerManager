@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <div>
+    <h2><span class="glyphicon glyphicon-user"></span> Customers</h2>
+  </div>
+
+  <div id="fitler">
+    Filter : {{filter}}<span></span>
+  </div>
+
+  <div class="col-md-4"></div>
+  <div class="col-md-4"></div>
+  <div class="col-md-4" id="addButton">
+    <button class="btn btn-default" routerLink="form">Add New CustomerService</button>
+  </div>
+
+  <div class="container-fluid" id="table">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th></th>
+        <th>Firstname
+          <button class="btn btn-default" (click)="sortByFirstName()"><span class="caret"></span></button>
+        </th>
+        <th>Lastname
+          <button class="btn btn-default" (click)="sortByLastName()"><span class="caret"></span></button>
+        </th>
+        <th>Address
+          <button class="btn btn-default" (click)="sortByAddress()"><span class="caret"></span></button>
+        </th>
+        <th>City
+          <button class="btn btn-default" (click)="sortByCity()"><span class="caret"></span></button>
+        </th>
+        <th>State
+          <button class="btn btn-default" (click)="sortByState()"><span class="caret"></span></button>
+        </th>
+        <th>Order Total
+          <button class="btn btn-default" (click)="sortByOrder()"><span class="caret"></span></button>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let x of customers;let i = index" routerLink="form/{{i}}">
+        <td><span class="glyphicon glyphicon-user"></span></td>
+        <td>{{x.firstName}}</td>
+        <td>{{x.lastName}}</td>
+        <td>{{x.address}}</td>
+        <td>{{x.city}}</td>
+        <td>{{x.state}}</td>
+        <td>{{x.order}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

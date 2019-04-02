@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <div id="name">
+    <h3><span class="glyphicon glyphicon-user"></span>CustomerService</h3>
+  </div>
+
+  <div class="col-md-3"></div>
+  <div class="col-md-6" id="form">
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmitForm()">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" class="form-control" formControlName="firstName">
+      </div>
+
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" class="form-control" formControlName="lastName">
+      </div>
+
+      <div class="form-group">
+        <label>Gender</label>
+        <div class="radio-inline">
+          <label><input type="radio" name="gender" value="Male" formControlName="gender" checked>Male</label>
+        </div>
+        <div class="radio-inline">
+          <label><input type="radio" name="gender" value="Female" formControlName="gender">Female</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" formControlName="email">
+      </div>
+
+      <div class="form-group">
+        <label>Address</label>
+        <input type="text" class="form-control" formControlName="address">
+      </div>
+
+      <div class="form-group">
+        <label>City</label>
+        <input type="text" class="form-control" formControlName="city">
+      </div>
+
+      <div class="form-group">
+        <label>State</label>
+        <input type="text" class="form-control" formControlName="state">
+      </div>
+      <div class="form-group">
+        <label>Order</label>
+        <input type="text" class="form-control" formControlName="order">
+      </div>
+      <div id="buttons">
+        <div class="col-md-4">
+          <button type="button" class="btn btn-danger">Delete</button>
+        </div>
+
+        <div class="col-md-4">
+
+        </div>
+
+        <div class="col-md-4">
+          <button class="btn btn-default" routerLink="">Cancel</button>
+          <button class="btn btn-primary" type="submit" id="submit" [disabled]="customerForm.invalid">{{updateButton}}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-3"></div>
+</div>
