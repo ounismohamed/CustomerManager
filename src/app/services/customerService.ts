@@ -40,6 +40,20 @@ export class CustomerService {
       );
   }
 
+  updateCustomer(customer: Customer, index: number) {
+    this.httpClient
+      .put('http://localhost:8080/api/customers/' + index, customer)
+      .subscribe(
+        () => {
+          this.customers[index] = customer;
+          this.emitCustomerSubject();
+        },
+        (error) => {
+          alert('fail: ' + error);
+        }
+      );
+  }
+
   getFromServer() {
     this.httpClient
       .get<any[]>('http://localhost:8080/api/customers')

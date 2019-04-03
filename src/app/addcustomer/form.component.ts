@@ -73,7 +73,7 @@ export class FormComponent implements OnInit {
       this.customerService.addCustomer(newCustomer);
     } else {
       var i = this.route.snapshot.params['id'];
-      this.customerService.getCustomers()[i] = newCustomer;
+      this.customerService.updateCustomer(newCustomer, i);
     }
     this.router.navigate(['']);
   }
