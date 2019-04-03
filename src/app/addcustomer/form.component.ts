@@ -19,7 +19,6 @@ export class FormComponent implements OnInit {
               private customerService: CustomerService,
               private router: Router,
               private route: ActivatedRoute) {
-
   }
 
   ngOnInit() {
@@ -42,6 +41,7 @@ export class FormComponent implements OnInit {
       this.update = false;
       this.updateButton = 'Add';
     }
+
   }
 
   initForm() {
@@ -70,10 +70,8 @@ export class FormComponent implements OnInit {
       formValue['state'],
       formValue['order']);
     if (this.update == false) {
-
       this.customerService.addCustomer(newCustomer);
-    }
-    else {
+    } else {
       var i = this.route.snapshot.params['id'];
       this.customerService.getCustomers()[i] = newCustomer;
     }

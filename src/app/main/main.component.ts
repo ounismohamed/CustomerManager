@@ -19,6 +19,7 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.clients.getFromServer();
     this.customersSubscription = this.clients.customerSubject.subscribe(
       (customers: Customer[]) => {
         this.customers = customers;
