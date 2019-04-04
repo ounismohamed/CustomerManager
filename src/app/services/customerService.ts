@@ -8,6 +8,8 @@ export class CustomerService {
 
   customerSubject = new Subject<Customer[]>();
 
+  path = 'http://localhost:8080/api/customers';
+
 
   constructor(
     private httpClient: HttpClient
@@ -28,7 +30,7 @@ export class CustomerService {
 
   addCustomer(customer: Customer) {
     this.httpClient
-      .post('http://localhost:8080/api/customers', customer)
+      .post(this.path, customer)
       .subscribe(
         () => {
           this.customers.push(customer);
@@ -42,7 +44,7 @@ export class CustomerService {
 
   updateCustomer(customer: Customer, index: number) {
     this.httpClient
-      .put('http://localhost:8080/api/customers/' + index, customer)
+      .put(this.path + index, customer)
       .subscribe(
         () => {
           this.customers[index] = customer;
@@ -56,7 +58,7 @@ export class CustomerService {
 
   getFromServer() {
     this.httpClient
-      .get<any[]>('http://localhost:8080/api/customers')
+      .get<any[]>(this.path)
       .subscribe(
         (response) => {
           this.customers = response;
