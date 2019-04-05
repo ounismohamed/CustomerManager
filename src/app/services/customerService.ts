@@ -44,7 +44,7 @@ export class CustomerService {
 
   updateCustomer(customer: Customer, index: number) {
     this.httpClient
-      .put(this.path + index, customer)
+      .put(this.path + '/' + index, customer)
       .subscribe(
         () => {
           this.customers[index] = customer;
