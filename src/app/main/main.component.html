@@ -4,7 +4,7 @@
   </div>
 
   <div id="fitler">
-    Filter : {{filter}}<span></span>
+    Filter : <input type="text" [(ngModel)]="filter" (input)="applicateFilter()">
   </div>
 
   <div class="col-md-4"></div>
@@ -19,34 +19,34 @@
       <tr>
         <th></th>
         <th>Firstname
-          <button class="btn btn-default" (click)="sortByFirstName()"><span class="caret"></span></button>
+          <button class="btn btn-default" (click)="sortByFirstName()" [innerHTML]="firstNameButton"></button>
         </th>
         <th>Lastname
-          <button class="btn btn-default" (click)="sortByLastName()"><span class="caret"></span></button>
+          <button class="btn btn-default" (click)="sortByLastName()" [innerHTML]="lastNameButton"></button>
         </th>
         <th>Address
-          <button class="btn btn-default" (click)="sortByAddress()"><span class="caret"></span></button>
+          <button class="btn btn-default" (click)="sortByAddress()" [innerHTML]="addressButton"></button>
         </th>
         <th>City
-          <button class="btn btn-default" (click)="sortByCity()"><span class="caret"></span></button>
+          <button class="btn btn-default" (click)="sortByCity()" [innerHTML]="cityButton"></button>
         </th>
         <th>State
-          <button class="btn btn-default" (click)="sortByState()"><span class="caret"></span></button>
+          <button class="btn btn-default" (click)="sortByState()" [innerHTML]="stateButton"></button>
         </th>
         <th>Order Total
-          <button class="btn btn-default" (click)="sortByOrder()"><span class="caret"></span></button>
+          <button class="btn btn-default" (click)="sortByOrder()" [innerHTML]="orderButton"></button>
         </th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let x of customers;let i = index" routerLink="form/{{i}}">
+      <tr *ngFor="let x of customersTmp;let i = index" routerLink="form/{{i}}">
         <td><span class="glyphicon glyphicon-user"></span></td>
         <td>{{x.firstName}}</td>
         <td>{{x.lastName}}</td>
         <td>{{x.address}}</td>
         <td>{{x.city}}</td>
         <td>{{x.state}}</td>
-        <td>{{x.order}}</td>
+        <td>${{x.order}}</td>
       </tr>
       </tbody>
     </table>

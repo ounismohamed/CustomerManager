@@ -23,21 +23,20 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
-    if (this.route.snapshot.params['id']) {
+    if (this.route.snapshot.params.id) {
       this.update = true;
       this.updateButton = 'Update';
 
-      var i = this.route.snapshot.params['id'];
-      this.customerForm.controls['firstName'].setValue(this.customerService.getCustomers()[i].firstName);
-      this.customerForm.controls['lastName'].setValue(this.customerService.getCustomers()[i].lastName);
-      this.customerForm.controls['gender'].setValue(this.customerService.getCustomers()[i].gender);
-      this.customerForm.controls['email'].setValue(this.customerService.getCustomers()[i].email);
-      this.customerForm.controls['address'].setValue(this.customerService.getCustomers()[i].address);
-      this.customerForm.controls['city'].setValue(this.customerService.getCustomers()[i].city);
-      this.customerForm.controls['state'].setValue(this.customerService.getCustomers()[i].state);
-      this.customerForm.controls['order'].setValue(this.customerService.getCustomers()[i].order);
-    }
-    else {
+      const i = this.route.snapshot.params.id;
+      this.customerForm.controls.firstName.setValue(this.customerService.getCustomers()[i].firstName);
+      this.customerForm.controls.lastName.setValue(this.customerService.getCustomers()[i].lastName);
+      this.customerForm.controls.gender.setValue(this.customerService.getCustomers()[i].gender);
+      this.customerForm.controls.email.setValue(this.customerService.getCustomers()[i].email);
+      this.customerForm.controls.address.setValue(this.customerService.getCustomers()[i].address);
+      this.customerForm.controls.city.setValue(this.customerService.getCustomers()[i].city);
+      this.customerForm.controls.state.setValue(this.customerService.getCustomers()[i].state);
+      this.customerForm.controls.order.setValue(this.customerService.getCustomers()[i].order);
+    } else {
       this.update = false;
       this.updateButton = 'Add';
     }
@@ -49,11 +48,11 @@ export class FormComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       gender: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       address: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
-      order: ['', Validators.required]
+      order: ['', [Validators.required, Validators.pattern('^[0-9]*$')]]
     });
   }
 
@@ -61,18 +60,18 @@ export class FormComponent implements OnInit {
   onSubmitForm() {
     const formValue = this.customerForm.value;
     const newCustomer = new Customer(
-      formValue['firstName'],
-      formValue['lastName'],
-      formValue['gender'],
-      formValue['email'],
-      formValue['address'],
-      formValue['city'],
-      formValue['state'],
-      formValue['order']);
+      formValue.firstName,
+      formValue.lastName,
+      formValue.gender,
+      formValue.email,
+      formValue.address,
+      formValue.city,
+      formValue.state,
+      formValue.order);
     if (this.update == false) {
       this.customerService.addCustomer(newCustomer);
     } else {
-      var i = this.route.snapshot.params['id'];
+      let i = this.route.snapshot.params.id;
       this.customerService.updateCustomer(newCustomer, i);
     }
     this.router.navigate(['']);
